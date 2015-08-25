@@ -1,0 +1,29 @@
+﻿@using Castle.Core.Internal
+@model XYZCorpTempSite.Interfaces.IHomePage
+
+<div class="jumbotron">
+    <img src="@Model.XyzCorpLogo.Src"
+         alt="@Model.XyzCorpLogo.Alt" 
+         class="@Model.XyzCorpLogo.Class"/>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>@Html.Raw(Model.FeaturedArticle.Header)</h1>
+        @Html.Raw(Model.FeaturedArticle.Content)
+    </div>
+</div>
+
+@if (!Model.Articles.IsNullOrEmpty())
+{
+    <div class="row">
+        @foreach (var article in Model.Articles)
+        {
+            <div class="col-md-4">
+                <h3>@article.Header</h3>
+                @Html.Raw(article.Content)
+            </div>
+        }
+    </div>
+}
+
