@@ -12,42 +12,38 @@
     <title>Index</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Header)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsFeatured)
-            </th>
-            <th></th>
-        </tr>
-    
-    @foreach (var item in Model) {
+    @Html.ActionLink("XYZCorp", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Header)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsFeatured)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Header)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.IsFeatured)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.NewsArticleId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.NewsArticleId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.NewsArticleId })
+                @Html.ActionLink("Edit", "Edit", new {id = item.NewsArticleId}) |
+                @Html.ActionLink("Details", "Details", new {id = item.NewsArticleId}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.NewsArticleId})
             </td>
         </tr>
     }
-    
-    </table>
+
+</table>
 </body>
 </html>

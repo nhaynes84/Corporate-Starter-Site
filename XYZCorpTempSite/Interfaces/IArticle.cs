@@ -4,5 +4,6 @@
     {
         string Header { get; set; }
         string Content { get; set; }
+        bool IsFeatured { get; set; }
     }
 }

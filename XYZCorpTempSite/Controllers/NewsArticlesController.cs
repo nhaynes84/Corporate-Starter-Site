@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
+using RTE;
 using XYZCorpTempSite.Contexts;
 using XYZCorpTempSite.Models;
 
 namespace XYZCorpTempSite.Controllers
 {
+    [Authorize]
     public class NewsArticlesController : Controller
     {
+        
         private NewsContext db = new NewsContext();
 
         // GET: NewsArticles
@@ -39,16 +38,27 @@ namespace XYZCorpTempSite.Controllers
         // GET: NewsArticles/Create
         public ActionResult Create()
         {
-            return View();
+            var newsEditorModel = new NewsEditorModel
+            {
+                Editor = new Editor(System.Web.HttpContext.Current, "NewsEditor"),
+                SelectedArticle = new NewsArticle()
+            };
+
+            newsEditorModel.Editor.LoadFormData(string.Empty);
+            newsEditorModel.Editor.MvcInit();
+
+            return View(newsEditorModel);
         }
 
         // POST: NewsArticles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost][ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NewsArticleId,Header,Content,IsFeatured")] NewsArticle newsArticle)
+        public ActionResult Create([Bind(Include = "NewsArticleId,Header,IsFeatured, NewsEditor")] NewsArticle newsArticle)
         {
+            newsArticle.Content = newsArticle.NewsEditor;
+
             if (ModelState.IsValid)
             {
                 db.NewsArticles.Add(newsArticle);
@@ -56,7 +66,16 @@ namespace XYZCorpTempSite.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(newsArticle);
+            var newsEditorModel = new NewsEditorModel
+            {
+                Editor = new Editor(System.Web.HttpContext.Current, "NewsEditor"),
+                SelectedArticle = newsArticle
+            };
+
+            newsEditorModel.Editor.LoadFormData(newsArticle.Content);
+            newsEditorModel.Editor.MvcInit();
+
+            return View(newsEditorModel);
         }
 
         // GET: NewsArticles/Edit/5
@@ -71,23 +90,46 @@ namespace XYZCorpTempSite.Controllers
             {
                 return HttpNotFound();
             }
-            return View(newsArticle);
+
+            var newsEditorModel = new NewsEditorModel
+            {
+                Editor = new Editor(System.Web.HttpContext.Current, "NewsEditor"),
+                SelectedArticle = newsArticle
+            };
+
+            newsEditorModel.Editor.LoadFormData(newsArticle.Content);
+            newsEditorModel.Editor.MvcInit();
+
+            return View(newsEditorModel);
         }
 
         // POST: NewsArticles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "NewsArticleId,Header,Content,IsFeatured")] NewsArticle newsArticle)
+        public ActionResult Edit([Bind(Include = "NewsArticleId,Header,NewsEditor,IsFeatured")] NewsArticle newsArticle)
         {
+            newsArticle.Content = newsArticle.NewsEditor;
+
             if (ModelState.IsValid)
             {
                 db.Entry(newsArticle).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(newsArticle);
+
+            var newsEditorModel = new NewsEditorModel
+            {
+                Editor = new Editor(System.Web.HttpContext.Current, "NewsEditor"),
+                SelectedArticle = newsArticle
+            };
+
+            newsEditorModel.Editor.LoadFormData(newsArticle.Content);
+            newsEditorModel.Editor.MvcInit();
+
+            return View(newsEditorModel);
         }
 
         // GET: NewsArticles/Delete/5

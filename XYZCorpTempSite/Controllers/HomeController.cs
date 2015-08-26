@@ -28,12 +28,16 @@ namespace XYZCorpTempSite.Controllers
         {
             using (var db = new NewsContext())
             {
+                var featuredArticle = (NewsArticle)Repository.GetFeaturedArticle(db);
+                var articles = (List<NewsArticle>)Repository.GetArticles(db);
+                articles.Remove(featuredArticle);
+
                 //SeedData(db);
                 return View(new HomePage
                 {
-                    Articles = ((NewsRepository) Repository).GetArticles(db),
-                    FeaturedArticle = ((NewsRepository) Repository).GetFeaturedArticle(db),
-                    XyzCorpLogo = ((NewsRepository) Repository).GetCurrentLogo(db)
+                    Articles = articles,
+                    FeaturedArticle = featuredArticle,
+                    XyzCorpLogo = Repository.GetCurrentLogo(db)
                 });
             }
         }
@@ -64,43 +68,14 @@ namespace XYZCorpTempSite.Controllers
             {
                 var homePage = new HomePage
                 {
-                    Articles = ((NewsRepository)Repository).GetArticles(db),
-                    FeaturedArticle = ((NewsRepository)Repository).GetFeaturedArticle(db),
-                    XyzCorpLogo = ((NewsRepository)Repository).GetCurrentLogo(db)
+                    Articles = Repository.GetArticles(db),
+                    FeaturedArticle = Repository.GetFeaturedArticle(db),
+                    XyzCorpLogo = Repository.GetCurrentLogo(db)
                 };
                 return View(homePage);
             }
         }
 
-        [Authorize]
-        public ActionResult ArticleEditor(int newsArticleId)
-        {
-            //Editor Editor1 = 
-            //Editor1.LoadFormData("stuff");
-            //Editor1.MvcInit();
-            //ViewBag.Editor = Editor1.MvcGetString();
-
-            var newsEditorModel = new NewsEditorModel
-            {
-                Editor = new Editor(System.Web.HttpContext.Current, "ArticleEditor")
-            };
-
-            using (var db = new NewsContext())
-            {
-                var selectedArticle = ((NewsRepository) Repository).GetArticleById(db, newsArticleId);
-                newsEditorModel.SelectedArticle = new NewsArticle
-                {
-                    Content = selectedArticle.Content,
-                    Header = selectedArticle.Header,
-                    IsFeatured = ((NewsArticle)selectedArticle).IsFeatured
-                };
-
-                newsEditorModel.Editor.LoadFormData(newsEditorModel.SelectedArticle.Content);
-                newsEditorModel.Editor.MvcInit();
-
-                return View("~/Views/Home/ArticleEditor.cshtml", newsEditorModel);
-            }
-        }
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

@@ -55,3 +55,5 @@ c:\Users\Architect\Documents\Visual Studio 2013\Projects\XYZCorpTempSite\XYZCorp
 C:\Users\Architect\documents\visual studio 2013\Projects\XYZCorpTempSite\XYZCorpTempSite.Tests\bin\Debug\Castle.Facilities.Logging.dll
 C:\Users\Architect\documents\visual studio 2013\Projects\XYZCorpTempSite\XYZCorpTempSite.Tests\bin\Debug\Castle.Facilities.Logging.xml
 C:\Users\Architect\documents\visual studio 2013\Projects\XYZCorpTempSite\XYZCorpTempSite.Tests\bin\Debug\RichTextEditor.dll
+C:\Users\Architect\documents\visual studio 2013\Projects\XYZCorpTempSite\XYZCorpTempSite.Tests\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Architect\documents\visual studio 2013\Projects\XYZCorpTempSite\XYZCorpTempSite.Tests\bin\Debug\EntityFramework.SqlServer.xml

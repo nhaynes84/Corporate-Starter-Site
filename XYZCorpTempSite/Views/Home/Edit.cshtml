@@ -3,6 +3,7 @@
 @model XYZCorpTempSite.Interfaces.IHomePage
 
 <div class="col-md-12">
+    <h2 class="text-center">Edit News Articles</h2>
     <div class="row">
         @if (!Model.Articles.IsNullOrEmpty())
         {
@@ -10,8 +11,8 @@
             {
                 <div class="col-md-12 text-center">
                     <h3>
-                        @Html.ActionLink(article.Header, "Edit", "NewsArticles", 
-                        new { id = ((NewsArticle)article).NewsArticleId }, null)
+                        @Html.ActionLink(article.Header ?? "[NO HEADER]", "Edit", "NewsArticles",
+                            new {id = ((NewsArticle) article).NewsArticleId}, null)
                     </h3>
                 </div>
             }

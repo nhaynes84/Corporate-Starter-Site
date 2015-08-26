@@ -10,30 +10,25 @@ namespace XYZCorpTempSite.Repositories
 {
     public class NewsRepository : IRepository
     {
-        public IArticle GetFeaturedArticle(NewsContext context)
+        public virtual IArticle GetFeaturedArticle(DbContext context)
         {
-            return context.NewsArticles
+            return ((NewsContext)context).NewsArticles
                 .ToList().FirstOrDefault(x => x.IsFeatured);
         }
 
-        public IArticle GetArticleById(NewsContext context, int newsArticleId)
+        public virtual IArticle GetArticleById(DbContext context, int? newsArticleId)
         {
-            return context.NewsArticles.Find(newsArticleId);
+            return ((NewsContext)context).NewsArticles.Find(newsArticleId);
         }
-        public IEnumerable<IArticle> GetArticles(NewsContext context)
+        public virtual IEnumerable<IArticle> GetArticles(DbContext context)
         {
-            return context.NewsArticles.ToList();
+            return ((NewsContext)context).NewsArticles.ToList();
         }
 
-        public ILogo GetCurrentLogo(NewsContext context)
+        public virtual ILogo GetCurrentLogo(DbContext context)
         {
-            return context.Logos
+            return ((NewsContext)context).Logos
                 .ToList().FirstOrDefault(x => x.IsCurrent);
-        }
-
-        public IEnumerable<ILogo> GetLogos(NewsContext context)
-        {
-            return context.Logos.ToList();
         }
     }
 }

@@ -19,24 +19,14 @@ namespace XYZCorpTempSite.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        private readonly ILogger _logger;
-        private ILogger Logger { get { return _logger; } }
-
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,
-            ILogger logger)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
-
-            if (logger == null)
-            {
-                throw new ArgumentNullException("logger");
-            }
-            _logger = logger;
         }
 
         public ApplicationSignInManager SignInManager
@@ -98,9 +88,6 @@ namespace XYZCorpTempSite.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    Logger.WarnFormat(
-                        "User with email: {0} attempted login but password validation failed", 
-                        model.Email);
                     return View(model);
             }
         }
