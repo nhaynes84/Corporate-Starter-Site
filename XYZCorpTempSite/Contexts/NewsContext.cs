@@ -10,7 +10,7 @@ namespace XYZCorpTempSite.Contexts
 {
     public class NewsContext : DbContext
     {
-        public DbSet<NewsArticle> NewsArticles { get; set; }
-        public DbSet<Logo> Logos { get; set; }
+        public virtual DbSet<NewsArticle> NewsArticles { get; set; }
+        public virtual DbSet<Logo> Logos { get; set; }
     }
 }

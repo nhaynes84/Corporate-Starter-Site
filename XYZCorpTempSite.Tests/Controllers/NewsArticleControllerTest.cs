@@ -15,7 +15,7 @@ using XYZCorpTempSite.Repositories;
 namespace XYZCorpTempSite.Tests.Controllers
 {
     [TestClass]
-    public class HomeControllerTest
+    public class NewsArticleControllerTest
     {
         [TestMethod]
         public void Index()
@@ -52,7 +52,7 @@ namespace XYZCorpTempSite.Tests.Controllers
                 });
             mockRepo.Setup(x => x.GetCurrentLogo(It.IsAny<NewsContext>()))
                 .Returns(new Logo { Alt = "alt", Class = "class", Src = "src" });
-            HomeController controller = new HomeController(mockRepo.Object);
+            var controller = new NewsArticlesController();
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
@@ -96,10 +96,10 @@ namespace XYZCorpTempSite.Tests.Controllers
                 });
             mockRepo.Setup(x => x.GetCurrentLogo(It.IsAny<NewsContext>()))
                 .Returns(new Logo {Alt = "alt", Class = "class", Src = "src"});
-            HomeController controller = new HomeController(mockRepo.Object);
+            var controller = new NewsArticlesController();
 
             // Act
-            ViewResult result = controller.Edit() as ViewResult;
+            ViewResult result = controller.Edit(34) as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);

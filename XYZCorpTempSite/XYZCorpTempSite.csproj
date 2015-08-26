@@ -1349,7 +1349,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
-    <Content Include="Views\Home\ArticleEditor.cshtml" />
     <Content Include="Views\NewsArticles\Create.cshtml" />
     <Content Include="Views\NewsArticles\Delete.cshtml" />
     <Content Include="Views\NewsArticles\Details.cshtml" />
