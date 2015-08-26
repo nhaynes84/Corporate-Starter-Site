@@ -4,9 +4,10 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using log4net.Config;
 
+[assembly: XmlConfigurator(Watch = true)]
+
 namespace XYZCorpTempSite.Installers
 {
-    [assembly: XmlConfigurator(Watch = true)]
     public class LoggerInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)

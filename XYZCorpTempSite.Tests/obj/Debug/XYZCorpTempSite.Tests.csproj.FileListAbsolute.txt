@@ -57,3 +57,5 @@ C:\Users\Architect\documents\visual studio 2013\Projects\XYZCorpTempSite\XYZCorp
 C:\Users\Architect\documents\visual studio 2013\Projects\XYZCorpTempSite\XYZCorpTempSite.Tests\bin\Debug\RichTextEditor.dll
 C:\Users\Architect\documents\visual studio 2013\Projects\XYZCorpTempSite\XYZCorpTempSite.Tests\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Architect\documents\visual studio 2013\Projects\XYZCorpTempSite\XYZCorpTempSite.Tests\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Architect\documents\visual studio 2013\Projects\XYZCorpTempSite\XYZCorpTempSite.Tests\bin\Debug\log4net.dll
+C:\Users\Architect\documents\visual studio 2013\Projects\XYZCorpTempSite\XYZCorpTempSite.Tests\bin\Debug\log4net.xml
